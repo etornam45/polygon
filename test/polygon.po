@@ -3,7 +3,7 @@ name: string = "Benjamin"
 if (name == "Benjamin"):
     print(name)
 
-fn change(^name: string, value: string):
+fn change(name: string, value: string):
     name = value
     name
 
