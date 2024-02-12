@@ -1,0 +1,46 @@
+name: string, age: int ,height: float
+
+type Car{
+    name: string
+    weight: float
+    model: string
+}
+
+name = "Benjamin"
+age = 34123
+height = 34.783
+
+if (name == "Benjamin"):
+    print(name)
+
+fn change(name: string, value: string):
+    name = value
+    name
+
+for chr in name:
+    print(chr)
+
+fn fib(n: int){
+    if(n <= 1){
+        1
+    }
+    fib(n - 1) + fib(n - 2)
+}
+
+new_car: Car = {
+    name: "Tesla CyberTruck"
+    weight: 894.44
+    model: "CyberTruck"
+}
+
+print(new_car.name)
+
+friends: string[] = ["Benjamin", "Alice", "Etornam"] 
+
+for (friend in friends) {
+    if ( friend != "Benjamin") {
+        print(friend)
+    } else {
+        print("My best frint is "+ friend)
+    }
+}
