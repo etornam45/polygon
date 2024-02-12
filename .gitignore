@@ -1,0 +1,3 @@
+.vscode
+lex.yy.c
+*.o
