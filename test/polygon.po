@@ -1,4 +1,6 @@
 name: string = "Benjamin"
+age: int = 34123 
+height: float = 34.783
 
 if (name == "Benjamin"):
     print(name)

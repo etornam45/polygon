@@ -1,3 +1,4 @@
 .vscode
 lex.yy.c
 *.o
+polygon
