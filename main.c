@@ -10,9 +10,10 @@
 #define FLOAT 5
 #define STRING 6
 #define ASSIGN_OP 7
-#define BINARY_OP 8
+#define ARITHMETIC_OP 8
 #define PUNCTUATION 9
-
+#define LOGICAL_OP 10
+#define COMPARISON_OP 11
 
 // Flex-generated lexer function
 extern int yylex();
@@ -60,14 +61,20 @@ int main(int argc, char *argv[]) {
             case ASSIGN_OP:
                 printf("ASSIGN_OP %s\n", yylval.stringValue);
                 break;
-            case BINARY_OP:
+            case ARITHMETIC_OP:
                 printf("BINARY_OP %s\n", yylval.stringValue);
+                break;
+            case LOGICAL_OP:
+                printf("LOGICAL_OP %s\n", yylval.stringValue);
+                break;
+            case COMPARISON_OP:
+                printf("COMPARISON_OP %s\n", yylval.stringValue);
                 break;
             case PUNCTUATION:
                 printf("PUNCTUATION %s\n", yylval.stringValue);
                 break;
             default:
-                printf("Unknown token\n");
+                printf("Unknown token\n", token);
                 break;
         }
     }

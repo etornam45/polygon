@@ -15,8 +15,10 @@
 #define FLOAT 5
 #define STRING 6
 #define ASSIGN_OP 7
-#define BINARY_OP 8
+#define ARITHMETIC_OP 8
 #define PUNCTUATION 9
+#define LOGICAL_OP 10
+#define COMPARISON_OP 11
 %}
 
 
@@ -28,8 +30,10 @@ _INT [0-9]+
 _FLOAT [0-9]+\.[0-9]+
 _STRING \"[^\"]*\"
 _ASSIGN_OP =
-_BINARY_OP [+*-/]
-_PUNCTUATION [:;,\(\)\{\}]
+_ARITHMETIC_OP [\+\-\*\/]
+_COMPARISON_OP (==|!=|<=|>=|<|>)
+_LOGICAL_OP (and|or|not)
+_PUNCTUATION [:;,.\(\)\{\}\[\]]
 _KEYWORD (if|else|while|for|return|break|continue|fn)
 _TYPE (int|float|string)
 
@@ -65,24 +69,38 @@ _TYPE (int|float|string)
     return STRING; 
 }
 
-{_ASSIGN_OP} { 
-    yylval.stringValue = strdup(yytext);
-    return ASSIGN_OP; 
-}
-
-{_BINARY_OP} { 
-    yylval.stringValue = strdup(yytext);
-    return BINARY_OP; 
-}
-
 {_PUNCTUATION} { 
     yylval.stringValue = strdup(yytext);
     return PUNCTUATION; 
 }
 
+{_ASSIGN_OP} { 
+    yylval.stringValue = strdup(yytext);
+    return ASSIGN_OP; 
+}
+
+{_LOGICAL_OP} {
+    yylval.stringValue = strdup(yytext);
+    return LOGICAL_OP;
+}
+
+{_COMPARISON_OP} {
+    yylval.stringValue = strdup(yytext);
+    return COMPARISON_OP;
+}
+
+{_ARITHMETIC_OP} { 
+    yylval.stringValue = strdup(yytext);
+    return ARITHMETIC_OP; 
+}
+
 [ \t\n] ; // Skip whitespace
 
-. { printf("Invalid character: %s\n", yytext); }
+. { 
+    printf("_________________________________\n");
+    printf("Invalid character: %s\n", yytext); 
+    printf("_________________________________\n");
+}
 
 %%
 
