@@ -27,7 +27,7 @@ $(EXECUTABLE): $(OBJECTS)
 	rm -f $(OBJECTS)
 
 run:
-	./$(EXECUTABLE) ./test/polygon.po
+	./$(EXECUTABLE) ./test/polygon.sample
 # Rule to clean up the build
 clean:
 	rm -f $(OBJECTS) $(EXECUTABLE) ./lex.yy.c
