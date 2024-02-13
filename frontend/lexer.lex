@@ -6,21 +6,6 @@
 
 %option noyywrap
 
-    // Token definitions
-%{
-#define TYPE 1
-#define KEYWORD 2
-#define ID 3
-#define INTEGER 4
-#define FLOAT 5
-#define STRING 6
-#define ASSIGN_OP 7
-#define ARITHMETIC_OP 8
-#define PUNCTUATION 9
-#define LOGICAL_OP 10
-#define COMPARISON_OP 11
-%}
-
 
 
 

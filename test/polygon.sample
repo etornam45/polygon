@@ -14,7 +14,7 @@ if (name == "Benjamin"){
     print(name)
 }
 
-fn change(name: string, value: string){
+fn change(*name: string, value: string){
     name = value
 }
 
@@ -43,6 +43,16 @@ for (friend in friends) {
     if ( friend != "Benjamin") {
         print(friend)
     } else {
-        print("My best frint is "+ friend)
+        print("My best friend is "+ friend)
     }
 }
+
+print(fib(10))
+
+fn greetBen(){
+    name = "Benjamin"
+    print("Good morning, {name}".format())
+    void
+}
+
+greetBen()

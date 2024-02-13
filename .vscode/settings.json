@@ -2,5 +2,6 @@
     "files.associations": {
         "*.lex": "lex",
         "lexer.h": "c"
-    }
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }

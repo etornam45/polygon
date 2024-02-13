@@ -1,4 +1,5 @@
 .vscode
-lex.yy.c
 *.o
 polygon
+*.tab.c
+*.yy.c

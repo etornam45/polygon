@@ -6,7 +6,7 @@ FLAGS =  -g -lfl -I./headers
 EXECUTABLE = polygon
 
 # Source and object files
-SOURCES = ./main.c ./lex.yy.c
+SOURCES = ./main.c ./lex.yy.c ./parser.tab.c
 OBJECTS = $(SOURCES:.c=.o)
 FROND_END = ./frontend
 
@@ -16,6 +16,7 @@ default: $(EXECUTABLE)
 # Rule to generate lex.yy.c from lexer.lex
 ./lex.yy.c: $(FROND_END)/lexer.lex
 	flex $(FROND_END)/lexer.lex
+	bison $(FROND_END)/parser.lex
 
 # Rule to compile source files into object files
 %.o: %.c
