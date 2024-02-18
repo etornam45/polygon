@@ -1,41 +1,46 @@
 %{
- #include <stdio.h>
- #include <assert.h>
- static int Pop();
- static int Top();
- static void Push(int val);
+#include <stdio.h>
+#include <stdlib.h>
+extern int yylex();
+
+void yyerror(const char *msg)
+{
+    fprintf(stderr, "error: %s\n", msg);
+}
+
+int yywrap() { return 1; }
+
+void prompt() { printf("expr > "); }
+
+
 %}
 
-%token T_Int
+%token NUMBER
+%token ADD SUB MUL DIV
+%token EOL SPACE EXIT
 
 %%
-S : S E '\n' { printf("= %d\n", Top()); }
- |
- ;
+calculation:
+| calculation line { prompt(); }
+;
 
-E : E E '+' { Push(Pop() + Pop()); }
- | E E '-' { int op2 = Pop(); Push(Pop() - op2); }
- | E E '*' { Push(Pop() * Pop()); }
- | E E '/' { int op2 = Pop(); Push(Pop() / op2); }
- | T_Int { Push(yylval); }
- ;
+line: EOL
+| exp EOL  { printf("%d\n", $1); }
+| EXIT EOL { printf("bye! \n"); exit(0); }
+;
+
+exp: factor        { $$ = $1; }
+| exp ADD factor   { $$ = $1 + $3; }
+| exp SUB factor   { $$ = $1 - $3; }
+;
+
+factor: term       { $$ = $1; }
+| factor MUL term  { $$ = $1 * $3; }
+| factor DIV term  { $$ = $1 / $3; }
+;
+
+
+term: NUMBER { $$ = $1; }
+;
+
 %%
-
-static int stack[100], count = 0;
-
-static int Pop() {
- assert(count > 0);
- return stack[--count];
-}
-static int Top() {
- assert(count > 0);
- return stack[count-1];
-}
-static void Push(int val) {
- assert(count < sizeof(stack)/sizeof(*stack));
- stack[count++] = val;
-}
-
-int main() {
- return yyparse();
-}
