@@ -13,10 +13,14 @@ FROND_END = ./frontend
 # Default target
 default: $(EXECUTABLE)
 
+
+./parser.tab.c: $(FROND_END)/parser.y
+	bison -d $(FROND_END)/parser.y
+
 # Rule to generate lex.yy.c from lexer.lex
 ./lex.yy.c: $(FROND_END)/lexer.lex
 	flex $(FROND_END)/lexer.lex
-	bison $(FROND_END)/parser.lex
+
 
 # Rule to compile source files into object files
 %.o: %.c
@@ -31,4 +35,4 @@ run:
 	./$(EXECUTABLE) ./test/polygon.sample
 # Rule to clean up the build
 clean:
-	rm -f $(OBJECTS) $(EXECUTABLE) ./lex.yy.c
+	rm -f $(OBJECTS) $(EXECUTABLE) ./lex.yy.c ./parser.tab.c ./parser.tab.h
