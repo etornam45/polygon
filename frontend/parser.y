@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 extern int yylex();
-extern int yyparse();
+
 void yyerror(const char *msg)
 {
     fprintf(stderr, "error: %s\n", msg);
@@ -12,11 +12,7 @@ int yywrap() { return 1; }
 
 void prompt() { printf("expr > "); }
 
-int main(int argc, char *argv[])
-{
-    prompt();
-    yyparse();
-}
+
 %}
 
 %token NUMBER

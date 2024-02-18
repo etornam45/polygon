@@ -1,9 +1,10 @@
 #include <stdio.h>
 
 extern int yyparse();
+extern void prompt();
 
-int main() {
-    printf("Enter an arithmetic expression: \n");
+int main(int argc, char *argv[])
+{
+    prompt();
     yyparse();
-    return 0;
 }
